@@ -1,0 +1,11 @@
+/* App.css */
+/* Estilos para el título principal */
+.Titulo {
+  text-align: center;
+  color: #ffffff;
+  background-color: #680202;
+  text-shadow: 7px 7px 7px rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  box-sizing: border-box;
+  font-size: 50px;
+}
