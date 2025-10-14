@@ -1,14 +1,29 @@
 import './inicio.css';
-import { Preview } from './preview';
+import { Preview } from './Preview';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+type Producto = {
+  _id: number;
+  nombre: string;
+  marca: {
+    _id: number;
+    nombre: string;
+    descripcion: string;
+  }
+  categoria: {
+    _id: number;
+    nombre: string;
+    descripcion: string;
+  }
+  precio: number;
+};
+
 export function Inicio() {
-  const [productosDestacados, setProductosDestacados] = useState([]);
+  const [productosDestacados, setProductosDestacados] = useState<Producto[]>([]);
 
   useEffect(() => {
-    // Llama a una ruta como /api/productos/destacados o similar
-    axios.get('http://localhost:3000/api/productos/destacados')
+    axios.get('http://localhost:3000/api/indumentarias')
       .then((response) => {
         setProductosDestacados(response.data);
       })
@@ -23,9 +38,10 @@ export function Inicio() {
       <div className="imagenes-productos">
         {productosDestacados.map((producto) => (
           <Preview
+            key={producto._id}
             nombre={producto.nombre}
-            descripcion={producto.descripcion}
-            imagen={producto.imagen}
+            marca={producto.marca.nombre}
+            categoria={producto.categoria.nombre}
             precio={producto.precio}
           />
         ))}
