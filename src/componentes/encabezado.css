@@ -3,7 +3,6 @@
 .encabezado {
   position: sticky;
   top: 0;
-  background-color: #fff;
   z-index: 1000;
 }
 
@@ -14,52 +13,62 @@
   font-size: 25px;
   padding: 10px;
   display: block;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
-.barra-busqueda {
-  padding: 5px 10px;
-  margin-block: 10px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-left: 350px;
-  margin-right: 0px;
-}
-
-.boton-busqueda {
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  display: inline-flex;
+.form-busqueda {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 450px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 10px;
+  background-color: #fff;
+}
+
+.izquierda, .derecha {
+  display: flex;
+  align-items: center;
 }
 
 .menu-lista {
-  list-style-type: none;
   display: flex;
   align-items: center;
-  margin: 0px;
-  padding: 10px;
-  background-color: lightgrey;
-  overflow: hidden;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 20px;
+  background-color: rgb(221, 221, 221);
+}
+
+.barra-busqueda {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 320px;
+  background: transparent;
+}
+
+.boton-busqueda {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  background: #3176dd;
+  color: #fff;
+  cursor: pointer;
 }
 
 .boton-explorar , .boton-usuario {
   text-decoration: none;
-  text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   color: #333;
   font-size: 20px;
-  padding: 0px 20px;
-  display: block;
-  margin-left: 20px;
+  margin-right: 10px;
 }
 
-.menu a:hover {
+.menu-lista a:hover {
   color: rgb(49, 144, 221);        
 }
