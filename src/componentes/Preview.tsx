@@ -10,7 +10,7 @@ export function Preview({ nombre, marca, categoria, precio }: PreviewProps) {
     <div className="preview">
       <h3 className="nombre-producto">{categoria} {marca} {nombre}</h3>
       <p className="precio-producto">${precio}</p>
-      <button className="boton-comprar">Comprar</button>
+      <button className="boton-comprar">Agregar al Carrito</button>
     </div>
   );
 }

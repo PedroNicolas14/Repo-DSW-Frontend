@@ -1,4 +1,3 @@
-import "./PieDePag.css"
 
 export function PieDePagina() {
     return (

@@ -34,6 +34,7 @@
   cursor: pointer;
   border-radius: 5px;
   font-size: 1em;
+  margin: 1%;
 }
 
 .boton-comprar:hover {

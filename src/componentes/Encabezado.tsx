@@ -1,4 +1,3 @@
-import './encabezado.css';
 
 export function Encabezado() {
   return (
