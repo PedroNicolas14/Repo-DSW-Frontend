@@ -1,28 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { api } from "../../services/api";
 import './usuario.css';
-
-type Localidad = {
-	_id: string;
-	codPostal: string;
-	ciudad: string;
-};
 
 export function Usuario() {
 	const [nombre, setNombre] = useState("");
 	const [apellido, setApellido] = useState("");
 	const [email, setEmail] = useState("");
 	const [contraseña, setContrasena] = useState("");
-	const [direccion, setDireccion] = useState("");
 	const [telefono, setTelefono] = useState("");
-	const [localidadId, setLocalidadId] = useState("");
-	const [localidades, setLocalidades] = useState<Localidad[]>([]);
-
-	useEffect(() => {
-		api.get('/localidades')
-			.then(res => setLocalidades(res.data))
-			.catch(error => console.error('Error fetching localidades', error));
-	}, []);
 
 const enviarFormulario = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -32,11 +17,15 @@ const enviarFormulario = async (e: React.FormEvent) => {
 				apellido,
 				email,
 				contraseña,
-				localidad:localidadId,
-				direccion,
-				telefono,
+				telefono
 			});
 			alert('Usuario registrado con exito!');
+			//Limpiar formulario al registrarse correctamente
+			setNombre("");
+			setApellido("");
+			setEmail("");
+			setContrasena("");
+			setTelefono("");
 		} catch (error) {
 			console.error('Error registrando usuario:', error);
 			alert('Error registrando usuario...');
@@ -68,28 +57,12 @@ const enviarFormulario = async (e: React.FormEvent) => {
 				</div>
 
 				<div className="form-row">
-					<label>Dirección</label>
-					<input value={direccion} onChange={e => setDireccion(e.target.value)} required/>
-				</div>
-
-				<div className="form-row">
 					<label>Teléfono</label>
 					<input value={telefono} onChange={e => setTelefono(e.target.value)} required/>
 				</div>
 
-				<div className="form-row">
-					<label>Localidad</label>
-					<select value={localidadId} onChange={e => setLocalidadId(e.target.value)} required>
-						<option value="">Seleccionar localidad</option>
-						{localidades.map(loc => (
-							<option key={loc._id} value={loc._id}>{loc.ciudad} ({loc.codPostal})</option>
-						))}
-					</select>
-				</div>
-
 				<div className="form-actions">
 					<button type="submit" className="boton-registrar">Registrar</button>
-
 				</div>
 			</form>
 		</section>

@@ -70,12 +70,13 @@ body {
 }
 
 .boton-explorar,
+.boton-carrito,
 .boton-usuario {
   text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:'Lucida Sans';
   color: #333;
   font-size: 20px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .menu-lista a:hover {

@@ -14,6 +14,7 @@ export function Encabezado() {
     </form>
 
     <div className="derecha">
+      <a href="/carrito" className="boton-carrito">🛒</a>
       <a href="/usuario" className="boton-usuario">Ingresar</a>
     </div>
   </nav>
