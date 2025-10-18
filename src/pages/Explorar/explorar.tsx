@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import "./explorar.css";
+import { AgregarCarrito } from "../../componentes/AgregarCarrito";
 
 type Indumentaria = {
   _id: string;
@@ -8,10 +9,12 @@ type Indumentaria = {
   precio: number;
   stock: number;
   color: string;
+  talle: string;
   marca: {
     _id: string;
     nombre: string;
     descripcion: string;
+    logo: string;
   }
   categoria: {
     _id: string;
@@ -22,6 +25,7 @@ type Indumentaria = {
 
 export function Explorar() {
   const [indumentarias, setIndumentarias] = useState<Indumentaria[]>([]);
+  const { agregarAlCarrito } = AgregarCarrito();
 
   useEffect(() => {
     api
@@ -42,7 +46,7 @@ export function Explorar() {
             <p>Marca: {item.marca.nombre}</p>
             <p>Color: {item.color}</p>
             <p>Stock: {item.stock}</p>
-            <button className="boton-comprar">Agregar al Carrito</button>
+            <button onClick={()=> agregarAlCarrito(item)}  className="boton-comprar">Agregar al Carrito</button>
           </div>
         ))}
       </div>
