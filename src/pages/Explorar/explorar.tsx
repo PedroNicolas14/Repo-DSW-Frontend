@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import "./explorar.css";
-import { AgregarCarrito } from "../../componentes/AgregarCarrito";
+import { useCarrito } from "../../context/CarritoContext";
 
 type Indumentaria = {
   _id: string;
@@ -10,6 +10,7 @@ type Indumentaria = {
   stock: number;
   color: string;
   talle: string;
+  imagen: string;
   marca: {
     _id: string;
     nombre: string;
@@ -25,7 +26,7 @@ type Indumentaria = {
 
 export function Explorar() {
   const [indumentarias, setIndumentarias] = useState<Indumentaria[]>([]);
-  const { agregarAlCarrito } = AgregarCarrito();
+  const { agregarAlCarrito } = useCarrito();
 
   useEffect(() => {
     api
@@ -40,12 +41,11 @@ export function Explorar() {
       <div className="indumentarias-lista">
         {indumentarias.map((item:Indumentaria) => (
           <div key={item._id} className="indumentaria-item">
-            <h3>{item.nombre}</h3>
-            <p>Precio: ${item.precio}</p>
-            <p>Categoria: {item.categoria.nombre}</p>
-            <p>Marca: {item.marca.nombre}</p>
-            <p>Color: {item.color}</p>
-            <p>Stock: {item.stock}</p>
+            <h3>{item.categoria.nombre} {item.marca.nombre} {item.nombre}</h3>
+            <a href={item.imagen} target="_blank" rel="noopener noreferrer">
+              <img src={item.imagen} alt={item.nombre} className="indumentaria-imagen" />
+            </a>
+            <p><strong className="texto-ars">ARS</strong><strong className="precio-item">${item.precio}</strong></p>
             <button onClick={()=> agregarAlCarrito(item)}  className="boton-comprar">Agregar al Carrito</button>
           </div>
         ))}
