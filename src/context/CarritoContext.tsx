@@ -7,17 +7,19 @@ type Indumentaria = {
   stock: number;
   color: string;
   talle: string;
+  imagen: string;
   marca: {
     _id: string;
     nombre: string;
     descripcion: string;
     logo: string;
-  };
+  }
   categoria: {
     _id: string;
     nombre: string;
     descripcion: string;
-  };
+  }
+  cantidad?: number;
 };
 
 type CarritoContextType = {
@@ -25,6 +27,8 @@ type CarritoContextType = {
   agregarAlCarrito: (producto: Indumentaria) => void;
   quitarDelCarrito: (id: string) => void;
   vaciarCarrito: () => void;
+  aumentarCantidad: (id: string) => void;
+  disminuirCantidad: (id: string) => void;
 };
 
 const CarritoContext = createContext<CarritoContextType | null>(null);
@@ -45,10 +49,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCarrito((prev) => {
       const existe = prev.find((item) => item._id === producto._id);
       if (existe) {
-        alert("Este producto ya está en el carrito");
-        return prev;
+        return prev.map((item) =>
+          item._id === producto._id && item.cantidad! < item.stock
+            ? { ...item, cantidad: item.cantidad! + 1 }
+            : item,
+        );
+      } else {
+        return [...prev, { ...producto, cantidad: 1 }];
       }
-      return [...prev, producto];
     });
   };
 
@@ -60,9 +68,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCarrito([]);
     localStorage.removeItem("carrito"); // limpiar también el storage
   };
+
+  const aumentarCantidad = (id: string) => {
+    setCarrito((prev) =>
+      prev.map((item) =>
+        item._id === id && item.cantidad! < item.stock
+          ? { ...item, cantidad: item.cantidad! + 1 }
+          : item
+      )
+    );
+  }
+
+  const disminuirCantidad = (id: string) => {
+    setCarrito((prev) =>
+      prev.map((item) =>
+        item._id === id && item.cantidad! > 1
+          ? { ...item, cantidad: item.cantidad! - 1 }
+          : item
+      )
+    );
+  };
+
 return (
     <CarritoContext.Provider
-      value={{ carrito, agregarAlCarrito, quitarDelCarrito, vaciarCarrito }}
+      value={{ carrito, agregarAlCarrito, quitarDelCarrito, vaciarCarrito, aumentarCantidad, disminuirCantidad }}
     >
       {children}
     </CarritoContext.Provider>

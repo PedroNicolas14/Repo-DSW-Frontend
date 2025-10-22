@@ -2,7 +2,7 @@ import "./carrito.css";
 import { useCarrito } from "../../context/CarritoContext";
 
 export function Carrito() {
-  const { carrito, quitarDelCarrito, vaciarCarrito } = useCarrito();
+  const { carrito, quitarDelCarrito, vaciarCarrito, disminuirCantidad, aumentarCantidad } = useCarrito();
   return (
     <section className="carrito-page">
       <h2>Tu Carrito de Compras</h2>
@@ -14,6 +14,25 @@ export function Carrito() {
             <div key={item._id} className="carrito-item">
               <h3>{item.nombre}</h3>
               <p>Precio: ${item.precio}</p>
+              <div className="cantidad-controles">
+                <button
+                  onClick={() => disminuirCantidad(item._id)}
+
+                >
+                  -
+                </button>
+
+                <span>{item.cantidad}</span>
+
+                <button
+                  onClick={() => aumentarCantidad(item._id)}
+
+                >
+                  +
+                </button>
+              </div>
+
+              <p>Stock disponible: {item.stock}</p>
               <button
                 onClick={() => quitarDelCarrito(item._id)}
                 className="boton-eliminar"
