@@ -17,21 +17,19 @@ export function Carrito() {
               <div className="cantidad-controles">
                 <button
                   onClick={() => disminuirCantidad(item._id)}
-
                 >
                   -
                 </button>
-
                 <span>{item.cantidad}</span>
-
                 <button
                   onClick={() => aumentarCantidad(item._id)}
-
                 >
                   +
                 </button>
               </div>
-
+              <div className ="subtotal">
+              <p>Subtotal: ${item.precio * (item.cantidad || 0)}</p>
+              </div>
               <p>Stock disponible: {item.stock}</p>
               <button
                 onClick={() => quitarDelCarrito(item._id)}
@@ -41,6 +39,15 @@ export function Carrito() {
               </button>
             </div>
           ))}
+          <div className="total-carrito">
+            <h3>
+              Total: $
+              {carrito.reduce(
+                (total, item) => total + item.precio * (item.cantidad || 0),
+                0
+              )}
+            </h3>
+          </div>
           <button onClick={vaciarCarrito} className="boton-limpiar">
             Limpiar Carrito
           </button>
