@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { api } from "../../services/api";
 import './usuario.css';
+import { guardarUsuario } from "../../services/usuario.service.js";
 
 export function Usuario() {
 	const [nombre, setNombre] = useState("");
@@ -12,13 +12,7 @@ export function Usuario() {
 const enviarFormulario = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			await api.post('/usuarios', {
-				nombre,
-				apellido,
-				email,
-				contraseña,
-				telefono
-			});
+			await guardarUsuario({nombre, apellido, email, contraseña, telefono});
 			alert('Usuario registrado con exito!');
 			//Limpiar formulario al registrarse correctamente
 			setNombre("");

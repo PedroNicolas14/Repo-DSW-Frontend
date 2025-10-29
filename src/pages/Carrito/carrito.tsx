@@ -53,6 +53,9 @@ export function Carrito() {
           </button>
         </div>
       )}
+      <div>
+        <button className="iniciar-pedido">Iniciar Pedido</button>
+      </div>
     </section>
   );
 }
