@@ -1,5 +1,4 @@
-
-.usuario-page{
+.formulario-page{
   max-width:40%;
   margin:28px auto;
   padding:18px;
@@ -8,24 +7,23 @@
   box-shadow:0 5px 20px rgba(0, 0, 0, 0.089);
 }
 
-.usuario-page h2{
+.formulario-page h2{
   margin-bottom:12px;
   justify-self: center;
 }
 
-.usuario-form .form-row{
+.form-row{
   display:flex;
   flex-direction:column;
   margin-bottom:12px;
 }
 
-.usuario-form label{
-  font-weight:600;
+.form-row label{
   margin-bottom:6px;
+  font-weight:600;
 }
 
-.usuario-form input,
-.usuario-form select{
+.form-row input{
   padding:8px 10px;
   border:1px solid #ddd;
   border-radius:6px;
@@ -39,7 +37,7 @@
 }
 
 .boton-registrar{
-  background:#3176dd;
+  background:#007bff;
   color:#fff;
   padding:10px 16px;
   border-radius:6px;
@@ -47,3 +45,6 @@
   cursor:pointer;
 }
 
+.boton-registrar:hover{
+  background:#0056b3;
+}

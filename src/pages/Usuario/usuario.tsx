@@ -1,6 +1,6 @@
 import { useState } from "react";
-import './usuario.css';
 import { guardarUsuario } from "../../services/usuario.service.js";
+import "../../pages/formulario.css";
 
 export function Usuario() {
 	const [nombre, setNombre] = useState("");
@@ -27,9 +27,9 @@ const enviarFormulario = async (e: React.FormEvent) => {
 	};
 
 	return (
-		<section className="usuario-page">
+		<section className="formulario-page">
 			<h2>Registro de Usuario</h2>
-			<form className="usuario-form" onSubmit={enviarFormulario}>
+			<form className="formulario-form" onSubmit={enviarFormulario}>
 				<div className="form-row">
 					<label>Nombre</label>
 					<input value={nombre} onChange={e => setNombre(e.target.value)} required/>

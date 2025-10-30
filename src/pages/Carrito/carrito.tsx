@@ -1,6 +1,6 @@
-import "./carrito.css";
 import { useCarrito } from "../../context/CarritoContext";
 import { useNavigate } from "react-router-dom";
+import "./carrito.css";
 
 export function Carrito() {
 
@@ -10,9 +10,14 @@ export function Carrito() {
     (acc, item) => acc + item.precio * (item.cantidad || 0),
     0
   );
+  
   const iniciarPedido = () => {
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío. Agrega productos antes de iniciar el pedido.");
+      return;
+    }
     navigate("/login");
-  }
+  };
 
   return (
     <section className="carrito-page">
@@ -24,6 +29,7 @@ export function Carrito() {
           {carrito.map((item) => (
             <div key={item._id} className="carrito-item">
               <h3>{item.nombre}</h3>
+              <img src={item.imagen} alt={item.nombre} className="indumentaria-imagen-carrito"/>
               <p>Precio: ${item.precio}</p>
               <div className="cantidad-controles">
                 <button
@@ -39,7 +45,7 @@ export function Carrito() {
                 </button>
               </div>
               <div className ="subtotal">
-              <p>Subtotal: ${item.precio * (item.cantidad || 0)}</p>
+              <strong>Subtotal: ${item.precio * (item.cantidad || 0)}</strong>
               </div>
               <p>Stock disponible: {item.stock}</p>
               <button

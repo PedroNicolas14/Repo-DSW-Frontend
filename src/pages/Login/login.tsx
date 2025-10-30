@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { obtenerUsuarios } from "../../services/usuario.service";
+import "../../pages/formulario.css";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -28,17 +29,23 @@ export function Login() {
   };
 
   return (
-    <div className="login-page">
+    <section className="formulario-page">
       <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleLogin}>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <form className="formulario-form" onSubmit={handleLogin}>
+        <div className="form-row">
+          <label>Email:</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </div>
 
-        <label>Contraseña:</label>
-        <input type="password" value={contraseña} onChange={(e) => setContraseña(e.target.value)} required />
+        <div className="form-row">
+          <label>Contraseña:</label>
+          <input type="password" value={contraseña} onChange={(e) => setContraseña(e.target.value)} required />
+        </div>
 
-        <button type="submit">Ingresar</button>
+        <div className="form-actions">
+          <button type="submit" className="boton-registrar">Ingresar</button>
+        </div>
       </form>
-    </div>
+    </section>
   );
 }

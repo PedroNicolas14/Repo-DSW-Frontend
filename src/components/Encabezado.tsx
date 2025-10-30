@@ -10,7 +10,7 @@ export function Encabezado() {
 
     <form className="form-busqueda">
       <input type="text" className="barra-busqueda" placeholder="Buscar..."/>
-      <button className="boton-busqueda">Buscar</button>
+      <button className="boton-registrar">Buscar</button>
     </form>
 
     <div className="derecha">

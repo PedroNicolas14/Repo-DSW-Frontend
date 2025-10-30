@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "../../pages/formulario.css";
 
 export function Envio() {
   const navigate = useNavigate();
@@ -9,20 +10,28 @@ export function Envio() {
   }
 
   return (
-    <div className="envio">
+    <section className="formulario-page">
       <h2>Formulario de Envío</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Dirección:</label>
-        <input type="text" required />
+      <form className="formulario-form" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <label>Dirección:</label>
+          <input type="text" required />
+        </div>
 
-        <label>Ciudad:</label>
-        <input type="text" required />
+        <div className="form-row">
+          <label>Ciudad:</label>
+          <input type="text" required />
+        </div>
 
-        <label>Código Postal:</label>
-        <input type="text" required />
+        <div className="form-row">
+          <label>Código Postal:</label>
+          <input type="text" required />
+        </div>
 
-        <button type="submit">Continuar</button>
+        <div className="form-actions">
+          <button type="submit" className="boton-registrar">Continuar</button>
+        </div>
       </form>
-    </div>
+    </section>
   );
 }

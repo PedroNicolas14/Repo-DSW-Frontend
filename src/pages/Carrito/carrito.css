@@ -32,28 +32,77 @@
 .carrito-item button:hover {
   background-color: #ff7875;
 }
-.carrito-vaciar {
-  margin-top: 20px;
-  text-align: center;
+
+.boton-limpiar {
+  background-color: #ff4d4f;
+  color: white;
+  margin-bottom: 1%;
+  border: none;
+  padding: 5px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size:large;
 }
-.carrito-vaciar button {
-  background-color: #1890ff;
+
+.boton-limpiar:hover {
+  background-color: #ff7875;
+}
+
+.cantidad-controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cantidad-controles button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cantidad-controles button:hover {
+  background-color: #0056b3;
+}
+
+.cantidad-controles span {
+  font-weight: bold;
+}
+
+.subtotal {
+  margin-top: 10px;
+}
+
+.cantidad-controles button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.total-carrito {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: right;
+}
+
+.iniciar-pedido {
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 16px;
   border-radius: 4px;
   cursor: pointer;
-}
-.carrito-vaciar button:hover {
-  background-color: #40a9ff;
+  font-size: large;
 }
 
-.boton-limpiar {
-  margin-bottom: 1%;
+.iniciar-pedido:hover {
+  background-color: #0056b3;
 }
 
-.iniciar-pedido {
-  margin-top: 1%;
-  width: 9%;
-  height: 2rem;
+.indumentaria-imagen-carrito {
+  max-width: 100px;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
 }
