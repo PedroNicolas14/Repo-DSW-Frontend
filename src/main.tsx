@@ -9,6 +9,9 @@ import { Usuario } from './pages/Usuario/usuario.js'
 import { Explorar } from './pages/Explorar/explorar.js'
 import { CarritoProvider } from './context/CarritoContext'
 import { Carrito } from './pages/Carrito/carrito.js'
+import { Login } from './pages/Login/login.js'
+import { Envio } from './pages/Envio/envio'
+import { Pago } from './pages/Pago/pago'
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
@@ -22,6 +25,9 @@ if (rootElement) {
           <Route path="/explorar" element={<Explorar />} />
           <Route path="/usuario" element={<Usuario />} />
           <Route path="/carrito" element={<Carrito />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/envio" element={<Envio />} />
+          <Route path="/pago" element={<Pago />} />
         </Routes>
         <PieDePagina />
         </CarritoProvider>

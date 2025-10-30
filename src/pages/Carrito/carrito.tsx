@@ -1,8 +1,19 @@
 import "./carrito.css";
 import { useCarrito } from "../../context/CarritoContext";
+import { useNavigate } from "react-router-dom";
 
 export function Carrito() {
+
   const { carrito, quitarDelCarrito, vaciarCarrito, disminuirCantidad, aumentarCantidad } = useCarrito();
+  const navigate = useNavigate();
+  const total = carrito.reduce(
+    (acc, item) => acc + item.precio * (item.cantidad || 0),
+    0
+  );
+  const iniciarPedido = () => {
+    navigate("/login");
+  }
+
   return (
     <section className="carrito-page">
       <h2>Tu Carrito de Compras</h2>
@@ -42,10 +53,7 @@ export function Carrito() {
           <div className="total-carrito">
             <h3>
               Total: $
-              {carrito.reduce(
-                (total, item) => total + item.precio * (item.cantidad || 0),
-                0
-              )}
+              {total}
             </h3>
           </div>
           <button onClick={vaciarCarrito} className="boton-limpiar">
@@ -54,7 +62,7 @@ export function Carrito() {
         </div>
       )}
       <div>
-        <button className="iniciar-pedido">Iniciar Pedido</button>
+        <button onClick={iniciarPedido} className="iniciar-pedido">Iniciar Pedido</button>
       </div>
     </section>
   );

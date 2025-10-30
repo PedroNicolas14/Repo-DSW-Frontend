@@ -18,7 +18,7 @@ export function Preview({ nombre, marca, categoria, imagen, precio, item }: Prev
       <h3 className="nombre-producto">{categoria} {marca} {nombre}</h3>
       <p><strong className="texto-ars">ARS</strong><strong className="precio-item">${precio}</strong></p>
       <button className="boton-comprar" onClick={(e) => {
-                e.stopPropagation(); // evita que se abra el modal
+                e.stopPropagation();
                 agregarAlCarrito(item);
         }}>Agregar al Carrito</button>
     </div>

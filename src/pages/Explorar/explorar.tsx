@@ -45,9 +45,7 @@ export function Explorar() {
           </div>
         ))}
         {VerDetalleOpen && selectedItem && (
-        <div className="VerDetalle-overlay" onClick={closeVerDetalle}>
           <VerDetalle item={selectedItem} onClose={closeVerDetalle} />
-        </div>
         )}
       </div>
     </section>
