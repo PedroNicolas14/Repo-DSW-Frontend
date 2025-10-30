@@ -3,13 +3,13 @@ import { obtenerIndumentarias } from "../../services/indumentaria.service.js";
 import "./explorar.css";
 import { typeIndumentaria } from "../../types/indumentaria.js";
 import { Preview } from "../../components/Preview.js";
-import { Modal } from "../../components/Modal.js";
+import { VerDetalle } from "../../components/verDetalle.js";
 
 
 export function Explorar() {
   const [indumentarias, setIndumentarias] = useState<typeIndumentaria[]>([]);
   const [selectedItem, setSelectedItem] = useState<typeIndumentaria | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [VerDetalleOpen, setVerDetalleOpen] = useState(false);
 
   useEffect(() => {
     obtenerIndumentarias()
@@ -17,13 +17,13 @@ export function Explorar() {
       .catch((error) => console.error("Error al obtener indumentarias", error));
   }, []);
 
-   const handleItemClick = (item: typeIndumentaria) => {
+   const itemDetalle = (item: typeIndumentaria) => {
     setSelectedItem(item);
-    setModalOpen(true);
+    setVerDetalleOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeVerDetalle = () => {
+    setVerDetalleOpen(false);
     setSelectedItem(null);
   };
 
@@ -32,7 +32,7 @@ export function Explorar() {
       <h2>Explora los diferentes productos</h2>
       <div className="indumentarias-lista">
         {indumentarias.map((item) => (
-          <div className="indumentaria-item" onClick={() => handleItemClick(item)} style={{ cursor: "pointer" }}>
+          <div className="indumentaria-item" onClick={() => itemDetalle(item)} style={{ cursor: "pointer" }}>
             <Preview
               key={item._id}
               imagen={item.imagen}
@@ -44,9 +44,9 @@ export function Explorar() {
               />
           </div>
         ))}
-        {modalOpen && selectedItem && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <Modal item={selectedItem} onClose={closeModal} />
+        {VerDetalleOpen && selectedItem && (
+        <div className="VerDetalle-overlay" onClick={closeVerDetalle}>
+          <VerDetalle item={selectedItem} onClose={closeVerDetalle} />
         </div>
         )}
       </div>

@@ -1,5 +1,12 @@
 import { typeUsuario } from "./usuario.js";
 import { typeEnvio } from "./envio.js";
+import { typeIndumentaria } from "./indumentaria.js";
+
+interface typeDetallePedido {
+  indumentaria: typeIndumentaria;
+  cantidad: number;
+  precioUnitario: number;
+}
 
 export interface typePago {
   _id: string;
@@ -14,6 +21,7 @@ export interface typePedido {
   usuario: typeUsuario;
   fecha: Date;    
   estado: "pendiente" | "completado" | "cancelado";
+  detallePedido: typeDetallePedido[];
   pago?: typePago;
   envio?: typeEnvio;
 }

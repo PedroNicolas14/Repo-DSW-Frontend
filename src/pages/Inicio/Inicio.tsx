@@ -3,13 +3,13 @@ import { Preview } from '../../components/Preview';
 import { useEffect, useState } from 'react';
 import { obtenerIndumentarias } from '../../services/indumentaria.service.js';
 import { typeIndumentaria } from '../../types/indumentaria.js';
-import { Modal } from '../../components/Modal';
+import { VerDetalle } from '../../components/verDetalle';
 
 export function Inicio() {
   const [productosDestacados, setProductosDestacados] = useState<typeIndumentaria[]>([]);
   const [productos, setProductos] = useState<typeIndumentaria[]>([]);
   const [selectedItem, setSelectedItem] = useState<typeIndumentaria | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [VerDetalleOpen, setVerDetalleOpen] = useState(false);
 
   useEffect(() => {
     obtenerIndumentarias()
@@ -23,13 +23,13 @@ export function Inicio() {
     setProductosDestacados(destacados);
   }, [productos]);
 
-  const handleItemClick = (item: typeIndumentaria) => {
+  const itemDetalle = (item: typeIndumentaria) => {
     setSelectedItem(item);
-    setModalOpen(true);
+    setVerDetalleOpen(true);
   }
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeVerDetalle = () => {
+    setVerDetalleOpen(false);
     setSelectedItem(null);
   }
 
@@ -38,7 +38,7 @@ export function Inicio() {
       <h2 className="subtitulo">Productos destacados</h2>
       <div className="imagenes-productos">
         {productosDestacados.map((producto) => (
-          <div className="indumentaria-item" onClick={() => handleItemClick(producto)} style={{ cursor: "pointer" }} key={producto._id}>
+          <div className="indumentaria-item" onClick={() => itemDetalle(producto)} style={{ cursor: "pointer" }} key={producto._id}>
           <Preview
             key={producto._id}
             imagen={producto.imagen}
@@ -50,8 +50,8 @@ export function Inicio() {
           />
           </div>
         ))}
-        {modalOpen && selectedItem && (
-        <Modal item={selectedItem} onClose={closeModal} />
+        {VerDetalleOpen && selectedItem && (
+        <VerDetalle item={selectedItem} onClose={closeVerDetalle} />
         )}
       </div>
     </section>
