@@ -28,8 +28,8 @@ export function Carrito() {
         <div className="carrito-lista">
           {carrito.map((item) => (
             <div key={item._id} className="carrito-item">
-              <h3>{item.nombre}</h3>
               <img src={item.imagen} alt={item.nombre} className="indumentaria-imagen-carrito"/>
+              <h3>{item.nombre}</h3>
               <p>Precio: ${item.precio}</p>
               <div className="cantidad-controles">
                 <button

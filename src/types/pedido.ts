@@ -2,7 +2,7 @@ import { typeUsuario } from "./usuario.js";
 import { typeEnvio } from "./envio.js";
 import { typeIndumentaria } from "./indumentaria.js";
 
-interface typeDetallePedido {
+export interface typeDetallePedido {
   indumentaria: typeIndumentaria;
   cantidad: number;
   precioUnitario: number;

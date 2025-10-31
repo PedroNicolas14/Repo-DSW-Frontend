@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useCarrito } from "../../context/CarritoContext";
 import { useNavigate } from "react-router-dom";
 import { guardarPedido } from "../../services/pedido.service";
+import { typeDetallePedido } from "../../types/pedido.js";
 import "./pago.css";
 import "../Carrito/carrito.css";
 
@@ -13,17 +14,25 @@ export function Pago() {
     (acc, item) => acc + item.precio * (item.cantidad || 0),
     0
   );
+  const confirmarPedido = async () => {
+    // Generar los detalles a partir del carrito
+    const detalles: typeDetallePedido[] = carrito.map((item) => ({
+      indumentaria: item,
+      cantidad: item.cantidad || 1,
+      precioUnitario: item.precio,
+    }));
 
-  /*const handleFinalizarPago = (e: React.FormEvent) => {
+  const handleFinalizarPago = (e: React.FormEvent) => {
     e.preventDefault();
 
     const nuevoPedido = {
-      items: carrito,
+      detallePedido: detalles,
       fecha: new Date().toISOString(),
       estado: "Pendiente",
 
+
     };
-    guardarPedido(nuevoPedido)
+   /* guardarPedido(nuevoPedido)
       .then(() => {
         alert("Pago realizado y pedido guardado con éxito");
         vaciarCarrito();
@@ -37,7 +46,7 @@ export function Pago() {
 
   return (
     <div className="pago">
-      <h2>Resumen de Pago</h2>
+      <h2>Resumen del Pedido</h2>
       <section className="resumen-carrito">
         {carrito.map((item) => (
           <div key={item._id} className="carrito-item">
@@ -66,10 +75,10 @@ export function Pago() {
             <label htmlFor="mercadoPago">Mercado Pago</label>
             <img src="/Mercado_Pago.svg.png" alt="Mercado Pago Logo" className="logo" />
           </div>
-          <button type="submit" className="boton-pagar">Realizar Pago</button>
+          <button type="submit" className="boton-pagar">Confirmar</button>
         </form>
       </section>
 
     </div>
   );
-}
+}}}

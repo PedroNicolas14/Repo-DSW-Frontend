@@ -7,7 +7,7 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
   const navigate = useNavigate();
-
+  
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -15,11 +15,10 @@ export function Login() {
       const response = await obtenerUsuarios();
       const usuarios = response.data;
       const usuario = usuarios.find((u: any) => u.email === email && u.contraseña === contraseña);
-
       if (usuario) {
         navigate("/envio");
       } else {
-        alert("usuario o contraseña incorrectos");
+        alert("usuario o contraseña incorrectos, sera redirigido para registrar un nuevo usuario...");
         navigate("/usuario");
       }
     } catch (err) {
@@ -30,7 +29,7 @@ export function Login() {
 
   return (
     <section className="formulario-page">
-      <h2>Iniciar Sesión</h2>
+      <h2>Ingrese el usuario</h2>
       <form className="formulario-form" onSubmit={handleLogin}>
         <div className="form-row">
           <label>Email:</label>
