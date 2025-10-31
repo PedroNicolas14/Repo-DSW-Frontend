@@ -3,6 +3,7 @@ import { useCarrito } from "../../context/CarritoContext";
 import { useNavigate } from "react-router-dom";
 import { guardarPedido } from "../../services/pedido.service";
 import { typeDetallePedido } from "../../types/pedido.js";
+import { useUsuario } from "../../context/UsuarioContext";
 import "./pago.css";
 import "../Carrito/carrito.css";
 
@@ -10,40 +11,41 @@ export function Pago() {
 
   const navigate = useNavigate();
   const { carrito, vaciarCarrito } = useCarrito();
+  const { usuario } = useUsuario();
+
   const total = carrito.reduce(
     (acc, item) => acc + item.precio * (item.cantidad || 0),
     0
   );
-  const confirmarPedido = async () => {
-    // Generar los detalles a partir del carrito
+
+   const handleFinalizarPago = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     const detalles: typeDetallePedido[] = carrito.map((item) => ({
-      indumentaria: item,
+      indumentaria: item._id,
       cantidad: item.cantidad || 1,
       precioUnitario: item.precio,
     }));
 
-  const handleFinalizarPago = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const nuevoPedido = {
-      detallePedido: detalles,
-      fecha: new Date().toISOString(),
-      estado: "Pendiente",
-
-
-    };
-   /* guardarPedido(nuevoPedido)
-      .then(() => {
-        alert("Pago realizado y pedido guardado con éxito");
-        vaciarCarrito();
-        navigate("/");
-      })
-      .catch((err) => {
-        alert("Error al guardar el pedido");
-        console.error(err);
-      });
-  };*/
-
+    if(usuario){
+      const nuevoPedido = {
+        usuario: usuario._id,
+        fecha: new Date().toISOString(),
+        estado: "pendiente",
+        detallePedido: detalles,
+        pago: null,
+        envio: null
+      }
+      try {
+          await guardarPedido(nuevoPedido);
+          alert("Pago realizado y pedido guardado con éxito");
+          vaciarCarrito();
+          navigate("/");
+        } catch (err) {
+          alert("Error al guardar el pedido");
+          console.error(err);
+      }}
+  };
   return (
     <div className="pago">
       <h2>Resumen del Pedido</h2>
@@ -64,7 +66,7 @@ export function Pago() {
 
       <section className="metodo-pago">
         <h2>Selecciona tu método de pago</h2>
-        <form /*onSubmit={handleFinalizarPago}*/>
+        <form onSubmit={handleFinalizarPago}>
           <div>
             <img src="/logoTarjeta.png" alt="Tarjeta logo" className="logo"></img>
             <input type="radio" id="tarjeta" name="metodoPago" value="tarjeta" />
@@ -75,10 +77,10 @@ export function Pago() {
             <label htmlFor="mercadoPago">Mercado Pago</label>
             <img src="/Mercado_Pago.svg.png" alt="Mercado Pago Logo" className="logo" />
           </div>
-          <button type="submit" className="boton-pagar">Confirmar</button>
+          <button type="submit" className="boton-pagar">Realizar pago</button>
         </form>
       </section>
 
     </div>
   );
-}}}
+}

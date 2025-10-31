@@ -9,10 +9,18 @@ export function Usuario() {
 	const [contraseña, setContrasena] = useState("");
 	const [telefono, setTelefono] = useState("");
 
+	const nuevoUsuario = {
+      nombre: nombre,
+      apellido: apellido,
+			email: email,
+			contraseña: contraseña,
+			telefono: telefono
+    }
+
 const enviarFormulario = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			await guardarUsuario({nombre, apellido, email, contraseña, telefono});
+			await guardarUsuario(nuevoUsuario);
 			alert('Usuario registrado con exito!');
 			//Limpiar formulario al registrarse correctamente
 			setNombre("");

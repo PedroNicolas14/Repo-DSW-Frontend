@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { obtenerUsuarios } from "../../services/usuario.service";
+import { useUsuario } from "../../context/UsuarioContext";
 import "../../pages/formulario.css";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
+  const {setUsuario}=useUsuario();
   const navigate = useNavigate();
   
   const handleLogin = async (e: React.FormEvent) => {
@@ -16,6 +18,7 @@ export function Login() {
       const usuarios = response.data;
       const usuario = usuarios.find((u: any) => u.email === email && u.contraseña === contraseña);
       if (usuario) {
+        setUsuario(usuario);
         navigate("/envio");
       } else {
         alert("usuario o contraseña incorrectos, sera redirigido para registrar un nuevo usuario...");

@@ -12,6 +12,7 @@ import { Carrito } from './pages/Carrito/carrito.js'
 import { Login } from './pages/Login/login.js'
 import { Envio } from './pages/Envio/envio'
 import { Pago } from './pages/Pago/pago'
+import { UsuarioProvider } from './context/UsuarioContext'
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
@@ -19,6 +20,7 @@ if (rootElement) {
     <StrictMode>
       <BrowserRouter>
         <CarritoProvider>
+        <UsuarioProvider>
         <Encabezado />
         <Routes>
           <Route path="/" element={<Inicio />} />
@@ -30,6 +32,7 @@ if (rootElement) {
           <Route path="/pago" element={<Pago />} />
         </Routes>
         <PieDePagina />
+        </UsuarioProvider>
         </CarritoProvider>
       </BrowserRouter>
     </StrictMode>,

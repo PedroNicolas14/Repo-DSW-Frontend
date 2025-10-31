@@ -3,7 +3,7 @@ import { typeEnvio } from "./envio.js";
 import { typeIndumentaria } from "./indumentaria.js";
 
 export interface typeDetallePedido {
-  indumentaria: typeIndumentaria;
+  indumentaria: typeIndumentaria['_id'];
   cantidad: number;
   precioUnitario: number;
 }
@@ -18,7 +18,7 @@ export interface typePago {
 
 export interface typePedido {
   _id: string;
-  usuario: typeUsuario;
+  usuario: typeUsuario['_id'];
   fecha: Date;    
   estado: "pendiente" | "completado" | "cancelado";
   detallePedido: typeDetallePedido[];

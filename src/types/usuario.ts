@@ -1,4 +1,5 @@
 export interface typeUsuario {
+  _id: String;
   nombre: String;
   apellido: String;
   email: String;
