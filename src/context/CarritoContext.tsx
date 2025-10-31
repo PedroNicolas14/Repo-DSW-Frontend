@@ -13,13 +13,11 @@ type CarritoContextType = {
 const CarritoContext = createContext<CarritoContextType | null>(null);
 
 export function CarritoProvider({ children }: { children: ReactNode }) {
-  // 🔹 1. Inicializamos desde localStorage (si existe)
   const [carrito, setCarrito] = useState<typeIndumentaria[]>(() => {
     const guardado = localStorage.getItem("carrito");
     return guardado ? JSON.parse(guardado) : [];
   });
 
-  // 🔹 2. Cada vez que cambia el carrito → lo guardamos
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
   }, [carrito]);
@@ -45,7 +43,7 @@ export function CarritoProvider({ children }: { children: ReactNode }) {
 
   const vaciarCarrito = () => {
     setCarrito([]);
-    localStorage.removeItem("carrito"); // limpiar también el storage
+    localStorage.removeItem("carrito");
   };
 
   const aumentarCantidad = (id: string) => {

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useCarrito } from "../../context/CarritoContext";
 import { useNavigate } from "react-router-dom";
 import { guardarPedido } from "../../services/pedido.service";
