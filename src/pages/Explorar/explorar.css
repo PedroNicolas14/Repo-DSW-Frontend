@@ -33,6 +33,13 @@
   border-radius: 4px;
   margin-bottom: 10px;
 }
+
+.logo-marca {
+  width: 10%;
+  height: 10%;
+  margin-left: 2%;
+}
+
 .boton-comprar {
   background-color: #007bff;
   color: #fff;
@@ -70,22 +77,38 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: 20%;
-  max-width: 50%;
+  width: 60%;
+  max-width: 800px;
   position: relative;
-  text-align: center;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  text-align: left;
 }
-.VerDetalle-content img {
-  max-width: 100%;
+
+.indumentaria-imagen-VerDetalle {
+  width: 45%;
+  height: auto;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  margin: 0;
+  object-fit: cover;
 }
-.VerDetalle-content h3 {
+
+.VerDetalle-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.VerDetalle-info h3 {
   margin-bottom: 10px;
 }
-.VerDetalle-content p {
+
+.VerDetalle-info p {
   margin: 5px 0;
 }
+
 .VerDetalle-content button {
   margin-top: 15px;
   margin-left: 5px;
@@ -96,20 +119,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .VerDetalle-content button:hover {
   background-color: #0056b3;
-}
-.VerDetalle-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-.indumentaria-imagen-VerDetalle {
-  max-width: 100%;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
 }
