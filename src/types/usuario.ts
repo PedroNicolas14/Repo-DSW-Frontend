@@ -1,8 +1,9 @@
 export interface typeUsuario {
-  _id: String;
-  nombre: String;
-  apellido: String;
-  email: String;
-  contraseña: String;
-  telefono: String;
+  _id: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  contraseña: string;
+  telefono: string;
+  rol: "cliente" | "admin";
 }

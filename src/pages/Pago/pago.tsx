@@ -2,7 +2,7 @@ import { useCarrito } from "../../context/CarritoContext";
 import { useNavigate } from "react-router-dom";
 import { guardarPedido } from "../../services/pedido.service";
 import { typeDetallePedido } from "../../types/pedido.js";
-import { useUsuario } from "../../context/UsuarioContext";
+import { useAuth } from "../../auth/authContext";
 import "./pago.css";
 import "../Carrito/carrito.css";
 
@@ -10,7 +10,7 @@ export function Pago() {
 
   const navigate = useNavigate();
   const { carrito, vaciarCarrito } = useCarrito();
-  const { usuario } = useUsuario();
+  const usuario = useAuth().user;
 
   const total = carrito.reduce(
     (acc, item) => acc + item.precio * (item.cantidad || 0),

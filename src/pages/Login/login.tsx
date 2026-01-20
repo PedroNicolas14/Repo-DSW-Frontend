@@ -1,35 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { obtenerUsuarios } from "../../services/usuario.service";
-import { useUsuario } from "../../context/UsuarioContext";
+import { useAuth } from "../../auth/authContext";
 import "../../pages/formulario.css";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
-  const {setUsuario}=useUsuario();
   const navigate = useNavigate();
+  const { login } = useAuth();
   
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      const response = await obtenerUsuarios();
-      const usuarios = response.data;
-      const usuario = usuarios.find((u: any) => u.email === email && u.contraseña === contraseña);
-      if (usuario) {
-        setUsuario(usuario);
-        navigate("/envio");
-      } else {
-        alert("usuario o contraseña incorrectos, sera redirigido para registrar un nuevo usuario...");
-        navigate("/usuario");
-      }
-    } catch (err) {
-      alert("Error al iniciar sesión");
-      console.error(err);
+      await login(email, contraseña);
+      navigate("/"); // redirigir a la página principal tras el login
+    } catch (error) {
+      alert("Error de login: Credenciales inválidas");
     }
   };
-
+  
   return (
     <section className="formulario-page">
       <h2>Ingrese el usuario</h2>
@@ -45,6 +34,7 @@ export function Login() {
         </div>
 
         <div className="form-actions">
+          <p>¿No tienes cuenta? <a href="/usuario">Registrate aquí</a></p>
           <button type="submit" className="boton-registrar">Ingresar</button>
         </div>
       </form>

@@ -16,7 +16,7 @@ export function Carrito() {
       alert("Tu carrito está vacío. Agrega productos antes de iniciar el pedido.");
       return;
     }
-    navigate("/login");
+    navigate("/envio");
   };
 
   return (

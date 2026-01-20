@@ -13,27 +13,62 @@ import { Login } from './pages/Login/login.js'
 import { Envio } from './pages/Envio/envio'
 import { Pago } from './pages/Pago/pago'
 import { UsuarioProvider } from './context/UsuarioContext'
+import { AuthProvider } from './auth/authContext.js'
+import { ProtectedRoute } from './auth/protectedRoute.js'
+import { AdminPanel } from './pages/Admin/adminPanel.js'
+import { UsuariosAdmin } from './pages/Admin/usuarios.js'
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
       <BrowserRouter>
+        <AuthProvider>
         <CarritoProvider>
         <UsuarioProvider>
         <Encabezado />
         <Routes>
+          {/* Rutas públicas */}
           <Route path="/" element={<Inicio />} />
           <Route path="/explorar" element={<Explorar />} />
-          <Route path="/usuario" element={<Usuario />} />
-          <Route path="/carrito" element={<Carrito />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/envio" element={<Envio />} />
-          <Route path="/pago" element={<Pago />} />
+          <Route path="/usuario" element={<Usuario />} />
+          
+          {/* Rutas protegidas */}
+          <Route path="/carrito" element={
+            <ProtectedRoute>
+            <Carrito />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/envio" element={
+            <ProtectedRoute>
+              <Envio />
+              </ProtectedRoute>
+            } />
+
+          <Route path="/pago" element={
+            <ProtectedRoute>
+              <Pago />
+              </ProtectedRoute>
+            } />
+
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/admin/usuarios" element={
+            <ProtectedRoute>
+              <UsuariosAdmin />
+            </ProtectedRoute>
+          } />
         </Routes>
         <PieDePagina />
         </UsuarioProvider>
         </CarritoProvider>
+        </AuthProvider>
       </BrowserRouter>
     </StrictMode>,
   );
