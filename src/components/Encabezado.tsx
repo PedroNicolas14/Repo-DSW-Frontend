@@ -1,34 +1,44 @@
 import { useAuth } from "../auth/authContext.js";
 
 export function Encabezado() {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <header className="encabezado">
-      <nav className="menu-lista">
-        <div className="izquierda">
-          <a href="/" className="logo"><strong>Niguta</strong>™</a>
-          <a href="/explorar" className="boton-explorar">Explorar</a>
-          { isAuthenticated /*&& user?.rol === 'admin'*/ &&
-          <a href="/admin" className="boton-explorar">Administrador</a>
+      <nav className="menu">
+        <ul className="menu-lista-izquierda">
+          <li className="menu-lista-item">
+            <a href="/" className="menu-lista-item-link">Inicio</a>
+          </li>
+          <li className="menu-lista-item">
+            <a href="/explorar" className="menu-lista-item-link">Explorar</a>
+          </li>
+          { isAuthenticated && user?.rol === 'admin' &&
+          <li className="menu-lista-item">
+            <a href="/admin" className="menu-lista-item-link">Administrar</a>
+          </li>
           }
-        </div>
-
-        <form className="form-busqueda">
-          <input type="text" className="barra-busqueda" placeholder="Buscar..."/>
-          <button className="boton-registrar">Buscar</button>
-        </form>
-
-        <div className="derecha">
-          <a href="/carrito" className="boton-carrito">🛒</a>
-          { isAuthenticated ? (
+          <li className="menu-lista-item">
+            <form className="form-busqueda">
+              <input type="text" className="form-barra-busqueda" placeholder="Buscar..."/>
+              <button type="submit" className="form-boton-busqueda"></button>
+            </form>
+          </li>
+        </ul>
+        <ul className="menu-lista-derecha">
+          <li className="menu-lista-item menu-izquierda">
+            <a href="/carrito" className="menu-lista-item-link">🛒</a>
+          </li>
+          <li className="menu-lista-item menu-izquierda">
+            { isAuthenticated ? (
             <>
-              <button onClick={logout} className="boton-usuario">Cerrar Sesión</button>
+              <a href="/usuario" className="menu-lista-item-link">Hola, {user?.nombre}!</a>
             </>
-          ) : (
-            <a href="/login" className="boton-usuario">Ingresar</a>
-          )}
-        </div>
+              ) : (
+              <a href="/login" className="menu-lista-item-link">Iniciar Sesión</a>
+            )}
+          </li>
+        </ul>
       </nav>
     </header>
       );

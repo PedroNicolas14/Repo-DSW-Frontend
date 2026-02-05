@@ -1,37 +1,64 @@
 
 .explorar-page {
+  display: flex;
   width: 80%;
   margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
+  padding: 20px 0;
+  background-color: #333;
   border-radius: 8px;
 }
 
-.explorar-page h2 {
+.explorar-main h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
+.explorar-main {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.explorar-aside {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  border-right: 2px solid #555;
+}
+
+.explorar-filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .indumentarias-lista {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
 }
 
 .indumentaria-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
+  background-color: #111a;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  transition: box-shadow 0.3s ease;
+  border-radius: 16px;
 }
+
+.indumentaria-item:hover {
+  box-shadow: 0 0 20px #ccc;
+}
+
 .indumentaria-imagen {
   width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.preview-info {
+  padding: 0 10px;
+  font-size: 0.7em;
 }
 
 .logo-marca {
@@ -54,11 +81,10 @@
 
 .precio-item {
   font-size: 1.5em;
-  color: #333;
 }
 .texto-ars {
   font-size: 1em;
-  color: #555;
+  opacity: 0.8;
 }
 .VerDetalle-overlay {
   position: fixed;
@@ -74,10 +100,10 @@
 }
 
 .VerDetalle-content {
-  background-color: #fff;
+  background-color: #222;
   padding: 20px;
   border-radius: 8px;
-  width: 60%;
+
   max-width: 800px;
   position: relative;
   display: flex;

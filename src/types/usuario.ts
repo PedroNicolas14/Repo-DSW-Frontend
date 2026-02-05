@@ -5,5 +5,5 @@ export interface typeUsuario {
   email: string;
   contraseña: string;
   telefono: string;
-  rol: "cliente" | "admin";
+  rol: string;
 }

@@ -19,7 +19,7 @@ export function Inicio() {
   }, []);
 
   useEffect(() => {
-    const destacados = productos.filter(producto => producto.stock > 25);
+    const destacados = productos.filter(producto => producto.categoria.nombre == "Camiseta de fútbol");
     setProductosDestacados(destacados);
   }, [productos]);
 
@@ -34,9 +34,9 @@ export function Inicio() {
   }
 
   return (
-    <section className="inicio">
+    <div className="inicio">
       <h2 className="subtitulo">Productos destacados</h2>
-      <div className="imagenes-productos">
+      <section className="imagenes-productos">
         {productosDestacados.map((producto) => (
           <div className="indumentaria-item" onClick={() => itemDetalle(producto)} style={{ cursor: "pointer" }} key={producto._id}>
           <Preview
@@ -53,7 +53,7 @@ export function Inicio() {
         {VerDetalleOpen && selectedItem && (
         <VerDetalle item={selectedItem} onClose={closeVerDetalle} />
         )}
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

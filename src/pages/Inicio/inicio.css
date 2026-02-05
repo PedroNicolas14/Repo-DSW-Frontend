@@ -1,14 +1,18 @@
+.inicio {
+  padding: 20px;
+}
+
 .subtitulo {
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom: 20px;
-  color: #2e2e2e;
   text-align: center;
 }
 
 .nombre-producto {
   font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .imagenes-productos {

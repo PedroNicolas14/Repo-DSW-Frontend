@@ -4,7 +4,7 @@ import { JSX } from "react/jsx-runtime";
 
 type Props = {
   children: JSX.Element;
-  roles?: ("admin" | "cliente")[];
+  roles?: string[];
 };
 
 export const ProtectedRoute = ({ children, roles }: Props) => {

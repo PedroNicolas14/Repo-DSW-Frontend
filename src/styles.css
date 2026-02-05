@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #222; 
+  color: #eee;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu {
+  background-color: #148a;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 0px 20px 2px #eee2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-lista-izquierda, .menu-lista-derecha {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  padding: 16px 32px;
+}
+
+.menu-lista-item {
+  text-align: center;
+  margin: 0 12px;
+}
+
+.menu-lista-item-link {
+  color: #eee;
+  text-decoration: none;
+  font-family: 'Lucida Sans';
+  font-size: 1.25em;
+  padding: 6px 8px;
+  transition: text-shadow 0.2s;
+}
+
+.menu-lista-item-link:hover {
+  text-shadow: 0 0 16px #fff;
+}
+
+.form-busqueda {
+  width: 100%;
+  height: 100%;
+  background-color: #1480;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.form-barra-busqueda {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  color: #eee;
+  width: 95%;
+}
+
+.form-barra-busqueda::placeholder {
+  color: #ccc;
+}
+
+.form-boton-busqueda {
+  width: 5%;
+  padding: 10px;
+  border: none;
+  background: url("lupita.png") center / cover #1480;
+  filter: brightness(2);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pie-de-pagina {
+  background-color: #0A2540;
+  padding: 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 0px 20px 2px #eee2;
+  margin-top: auto;
+}
